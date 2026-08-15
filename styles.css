@@ -1744,6 +1744,221 @@ body.loaded .hero-visual .showcase:hover .moto-img {
   flex-shrink: 0;
 }
 
+/* ============================================================
+   HERO REDESIGN — atmosfera premium
+   grid pattern, glows maiores, backdrop "AZ160", chips flutuantes,
+   showcase com aura laranja, scroll indicator, stats refinados
+   ============================================================ */
+
+/* Grid pattern sobre o hero */
+.hero {
+  position: relative;
+  padding: 100px 0 140px;
+  background:
+    radial-gradient(1100px 700px at 88% 18%, rgba(255, 107, 26, 0.28), transparent 60%),
+    radial-gradient(900px 800px at 8% 82%, rgba(59, 107, 224, 0.30), transparent 60%),
+    linear-gradient(135deg, #06153A 0%, #102B6A 45%, #0A1F4D 100%);
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+  background-size: 48px 48px;
+  -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 85%);
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 85%);
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.9;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  top: -20%; bottom: -20%; left: 46%;
+  width: 1.5px;
+  background: linear-gradient(180deg, transparent 5%, rgba(255, 107, 26, 0.45) 50%, transparent 95%);
+  transform: rotate(7deg);
+  pointer-events: none;
+  z-index: 1;
+  filter: blur(0.5px);
+}
+.hero .container { position: relative; z-index: 2; }
+
+/* Coluna visual — atmosfera premium */
+.hero-visual {
+  position: relative;
+  min-height: 520px;
+}
+
+/* Backdrop text gigante "AZ160" atrás do showcase */
+.hero-backdrop {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -55%);
+  font-family: var(--font-display);
+  font-size: clamp(160px, 22vw, 300px);
+  font-weight: 900;
+  letter-spacing: -0.06em;
+  line-height: 0.9;
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.09);
+  text-stroke: 1.5px rgba(255, 255, 255, 0.09);
+  pointer-events: none;
+  z-index: 0;
+  user-select: none;
+  white-space: nowrap;
+}
+
+/* Showcase aprimorado: aura laranja em torno da moto */
+.hero-visual .showcase {
+  position: relative;
+  z-index: 2;
+  background:
+    radial-gradient(ellipse 80% 70% at 50% 55%, rgba(255, 107, 26, 0.12) 0%, transparent 70%),
+    linear-gradient(160deg, #FFFFFF 0%, #E7EDFA 100%);
+  box-shadow:
+    0 40px 100px rgba(0, 0, 0, 0.42),
+    0 12px 40px rgba(255, 107, 26, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  transform: translateZ(0);
+}
+.hero-visual .showcase::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(255, 107, 26, 0.35), rgba(255, 255, 255, 0.05) 40%, rgba(59, 107, 224, 0.25));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Bike float suave */
+@keyframes bikeFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.hero-visual .moto-img {
+  animation: bikeFloat 4.6s ease-in-out infinite;
+  will-change: transform;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-visual .moto-img { animation: none; }
+}
+
+/* Chips flutuantes com specs */
+.floating-chip {
+  position: absolute;
+  z-index: 4;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: rgba(10, 31, 77, 0.92);
+  border: 1px solid rgba(255, 107, 26, 0.35);
+  color: #fff;
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  line-height: 1.1;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.3);
+  white-space: nowrap;
+  animation: chipFloat 5s ease-in-out infinite;
+}
+.floating-chip strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  color: var(--orange-400);
+  line-height: 1;
+  margin-bottom: 2px;
+}
+.floating-chip.chip-tl { top: 8%; left: 12px; animation-delay: 0s; }
+.floating-chip.chip-tr { top: 14%; right: 12px; animation-delay: 1.2s; }
+.floating-chip.chip-br {
+  bottom: 12%;
+  left: 12px;
+  background: linear-gradient(135deg, var(--orange-500), var(--orange-600));
+  border-color: transparent;
+  color: #fff;
+  animation-delay: 2.4s;
+}
+.floating-chip.chip-br strong {
+  color: #fff;
+  font-size: 14px;
+  display: inline;
+  margin: 0;
+}
+@keyframes chipFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .floating-chip { animation: none; }
+}
+
+/* Hero stats refinados — barra laranja + hover */
+.hero-stats {
+  gap: 28px;
+}
+.hero-stats .stat {
+  padding-left: 16px;
+  border-left: 2px solid rgba(255, 107, 26, 0.35);
+  transition: border-color 0.22s var(--ease), transform 0.22s var(--ease);
+}
+.hero-stats .stat:hover {
+  border-left-color: var(--orange-500);
+  transform: translateX(3px);
+}
+
+/* Scroll indicator no fim do hero */
+.scroll-indicator {
+  position: absolute;
+  bottom: 26px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255, 255, 255, 0.55);
+  font-family: var(--font-heading);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: color 0.2s var(--ease);
+}
+.scroll-indicator:hover { color: var(--orange-400); }
+.scroll-indicator svg {
+  animation: scrollBounce 1.8s ease-in-out infinite;
+  color: var(--orange-500);
+}
+@keyframes scrollBounce {
+  0%, 100% { transform: translateY(0); opacity: 0.5; }
+  50% { transform: translateY(6px); opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .scroll-indicator svg { animation: none; }
+}
+@media (max-width: 720px) {
+  .scroll-indicator { display: none; }
+  .hero-backdrop { font-size: clamp(120px, 30vw, 200px); opacity: 0.6; }
+  .floating-chip { display: none; }
+}
+
 /* =========== Responsive =========== */
 @media (max-width: 960px) {
   .hero { padding: 60px 0 80px; }
