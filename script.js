@@ -173,6 +173,107 @@ document.querySelectorAll('[data-year]').forEach((el) => {
   stats.forEach((s) => obs.observe(s));
 })();
 
+// ============================================================
+// PREMIUM SPRINT: preloader dismiss, progress bar, sticky CTA,
+// hero parallax, color cross-fade, mini quiz
+// ============================================================
+
+// Preloader dismiss (fires on window load or 1.5s max)
+(function () {
+  const pre = document.querySelector('.preloader');
+  if (!pre) { document.body.classList.add('loaded'); return; }
+  let done = false;
+  const finish = () => {
+    if (done) return; done = true;
+    pre.classList.add('done');
+    document.body.classList.add('loaded');
+    setTimeout(() => pre.remove(), 700);
+  };
+  window.addEventListener('load', () => setTimeout(finish, 400));
+  setTimeout(finish, 1500);
+})();
+
+// Scroll progress bar (thin orange line on top)
+(function () {
+  const bar = document.createElement('div');
+  bar.className = 'scroll-progress';
+  document.body.appendChild(bar);
+  const onScroll = () => {
+    const h = document.documentElement;
+    const total = (h.scrollHeight - h.clientHeight) || 1;
+    bar.style.width = ((h.scrollTop / total) * 100).toFixed(2) + '%';
+  };
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+})();
+
+// Sticky purchase CTA (aparece após rolar 800px)
+(function () {
+  const cta = document.createElement('a');
+  cta.className = 'sticky-cta';
+  cta.href = 'contato.html';
+  cta.setAttribute('aria-label', 'Fazer proposta');
+  cta.innerHTML =
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>Fazer proposta';
+  document.body.appendChild(cta);
+  let lastY = 0;
+  const onScroll = () => {
+    const y = window.scrollY;
+    const goingUp = y < lastY;
+    cta.classList.toggle('show', y > 800 && !goingUp);
+    lastY = y;
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+})();
+
+// Hero image parallax (leve, apenas desktop)
+(function () {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (window.matchMedia('(max-width: 960px)').matches) return;
+  const showcase = document.querySelector('.hero-visual .showcase');
+  if (!showcase) return;
+  let ticking = false;
+  const onScroll = () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      const y = Math.min(window.scrollY, 700);
+      showcase.style.transform = 'translateY(' + (y * 0.08).toFixed(1) + 'px)';
+      ticking = false;
+    });
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+})();
+
+// Cross-fade nos swatches de cor (aprimora a JS existente)
+(function () {
+  document.querySelectorAll('.model-strip [data-model-img]').forEach((img) => {
+    img.style.transition = 'opacity 0.25s var(--ease)';
+    const strip = img.closest('.model-strip');
+    if (!strip) return;
+    strip.addEventListener('click', (e) => {
+      const btn = e.target.closest('.swatch, .thumb');
+      if (!btn) return;
+      img.style.opacity = '0';
+      setTimeout(() => { img.style.opacity = '1'; }, 240);
+    }, true);
+  });
+})();
+
+// Mini quiz do hero — recomenda modelo e rola até ele
+(function () {
+  const quiz = document.querySelector('.hero-quiz');
+  if (!quiz) return;
+  quiz.addEventListener('click', (e) => {
+    const btn = e.target.closest('.hero-quiz-btn');
+    if (!btn) return;
+    const modelo = btn.dataset.modelo;
+    if (!modelo) return;
+    const url = 'motos.html#' + modelo;
+    window.location.href = url;
+  });
+})();
+
 // Scroll reveal (respects reduced-motion; no flash for above-the-fold)
 (function () {
   const targets = document.querySelectorAll(

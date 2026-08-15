@@ -3,20 +3,91 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Motos — Avelloz Santana Motos</title>
-  <meta name="description" content="Toda a linha Avelloz: AZ1, AZ125 e AZ160 Adventure. Veja fotos, cores, ficha técnica e fale com nosso vendedor." />
+  <title>Motos Avelloz · AZ1, AZ125 EFI e AZ160 Adventure — Preços, Cores e Ficha Técnica</title>
+  <meta name="description" content="Toda a linha Avelloz 0km na Bahia: AZ1 (49cc), AZ125 EFI (125cc) e AZ160 Adventure (160cc trail). Fotos, cores, ficha técnica e 5 anos de garantia. Financiamento facilitado." />
+  <meta name="keywords" content="Avelloz AZ1, Avelloz AZ125, AZ125 EFI, AZ160 Adventure, moto Avelloz 0km, moto trail 160cc, moto cub 49cc, moto urbana 125cc, preço moto Avelloz Bahia, financiamento moto Avelloz" />
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1" />
+  <meta name="theme-color" content="#0A1F4D" />
+  <meta name="geo.region" content="BR-BA" />
+  <link rel="canonical" href="https://www.avellozsantanamotos.com.br/motos.html" />
   <link rel="icon" type="image/svg+xml" href="img/favicon.svg" />
+  <link rel="apple-touch-icon" href="img/favicon.svg" />
+
+  <!-- Open Graph -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Motos Avelloz — AZ1, AZ125 e AZ160 Adventure" />
-  <meta property="og:description" content="Veja fotos, cores e ficha técnica de toda a linha Avelloz na Santana Motos." />
-  <meta property="og:image" content="img/motos/az160-azul.jpg" />
+  <meta property="og:site_name" content="Avelloz Santana Motos" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:title" content="Motos Avelloz · AZ1, AZ125 EFI e AZ160 Adventure — com 5 anos de garantia" />
+  <meta property="og:description" content="Toda a linha Avelloz 0km na Bahia. Fotos, cores, ficha técnica e financiamento facilitado. 5 anos de garantia." />
+  <meta property="og:url" content="https://www.avellozsantanamotos.com.br/motos.html" />
+  <meta property="og:image" content="https://www.avellozsantanamotos.com.br/img/motos/az160-azul.jpg" />
+
+  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Motos Avelloz · AZ1, AZ125 EFI e AZ160 Adventure" />
+  <meta name="twitter:description" content="Toda a linha Avelloz 0km, com 5 anos de garantia. Fotos, cores e ficha técnica." />
+  <meta name="twitter:image" content="https://www.avellozsantanamotos.com.br/img/motos/az160-azul.jpg" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Archivo+Black&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
+  <script src="script.js" defer></script>
+
+  <!-- JSON-LD: 3 produtos + breadcrumb + coleção -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Início", "item": "https://www.avellozsantanamotos.com.br/" },
+          { "@type": "ListItem", "position": 2, "name": "Motos", "item": "https://www.avellozsantanamotos.com.br/motos.html" }
+        ]
+      },
+      {
+        "@type": "Product",
+        "name": "Avelloz AZ1",
+        "brand": {"@type":"Brand","name":"Avelloz"},
+        "category": "Motocicleta Cub",
+        "description": "Cub 49cc leve e econômico. Perfeito para deslocamento urbano curto. Câmbio semiautomático de 4 marchas.",
+        "image": ["https://www.avellozsantanamotos.com.br/img/motos/az1-vermelha.jpg","https://www.avellozsantanamotos.com.br/img/motos/az1-preta.jpg","https://www.avellozsantanamotos.com.br/img/motos/az1-branca.jpg"],
+        "offers": { "@type": "Offer", "priceCurrency": "BRL", "availability": "https://schema.org/InStock", "seller": {"@id":"https://www.avellozsantanamotos.com.br/#dealer"}, "warranty": {"@type":"WarrantyPromise","durationOfWarranty":{"@type":"QuantitativeValue","value":5,"unitCode":"ANN"}} }
+      },
+      {
+        "@type": "Product",
+        "name": "Avelloz AZ125 EFI",
+        "brand": {"@type":"Brand","name":"Avelloz"},
+        "category": "Motocicleta Urbana 125cc",
+        "description": "Urbana 123cc com injeção eletrônica (EFI). Câmbio semiautomático que facilita a vida no dia a dia.",
+        "image": ["https://www.avellozsantanamotos.com.br/img/motos/az125-cinza.jpg","https://www.avellozsantanamotos.com.br/img/motos/az125-preta.jpg","https://www.avellozsantanamotos.com.br/img/motos/az125-branca.jpg"],
+        "offers": { "@type": "Offer", "priceCurrency": "BRL", "availability": "https://schema.org/InStock", "seller": {"@id":"https://www.avellozsantanamotos.com.br/#dealer"}, "warranty": {"@type":"WarrantyPromise","durationOfWarranty":{"@type":"QuantitativeValue","value":5,"unitCode":"ANN"}} }
+      },
+      {
+        "@type": "Product",
+        "name": "Avelloz AZ160 Adventure",
+        "brand": {"@type":"Brand","name":"Avelloz"},
+        "category": "Motocicleta Trail Adventure 160cc",
+        "description": "Trail 162cc com 12,3cv, para-brisa, protetor de motor e pneus mistos. Para cidade e estrada de terra.",
+        "image": ["https://www.avellozsantanamotos.com.br/img/motos/az160-azul.jpg","https://www.avellozsantanamotos.com.br/img/motos/az160-vermelha.jpg","https://www.avellozsantanamotos.com.br/img/motos/az160-preta.jpg"],
+        "offers": { "@type": "Offer", "priceCurrency": "BRL", "availability": "https://schema.org/InStock", "seller": {"@id":"https://www.avellozsantanamotos.com.br/#dealer"}, "warranty": {"@type":"WarrantyPromise","durationOfWarranty":{"@type":"QuantitativeValue","value":5,"unitCode":"ANN"}} }
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
+
+  <!-- Preloader -->
+  <div class="preloader" aria-hidden="true">
+    <svg viewBox="0 0 100 100" role="img" aria-label="Avelloz">
+      <g transform="rotate(45 50 50)">
+        <rect x="14" y="14" width="72" height="72" rx="8" ry="8" fill="#E85D2C"/>
+        <rect x="30" y="30" width="40" height="40" rx="5" ry="5" fill="#F4E7D3"/>
+      </g>
+    </svg>
+  </div>
 
   <!-- Header (same) -->
   <header class="site-header">
@@ -42,7 +113,7 @@
     </div>
     <div class="container nav">
       <a href="index.html" class="brand">
-        <div class="brand-mark"><span>A</span></div>
+        <div class="brand-mark"><img src="img/logo-mark.svg" alt="Avelloz" /></div>
         <div class="brand-name"><small>Avelloz</small>Santana Motos</div>
       </a>
       <nav class="nav-links">
@@ -87,7 +158,7 @@
         <article class="moto-card" data-category="cub">
           <div class="visual">
             <span class="tag">Entrada</span>
-            <img src="img/motos/az1-vermelha.jpg" alt="Avelloz AZ1 vermelha" loading="lazy" />
+            <img src="img/motos/az1-vermelha.webp" alt="Avelloz AZ1 vermelha" loading="lazy" />
           </div>
           <div class="body">
             <span class="category">Cub · 49cc</span>
@@ -113,7 +184,7 @@
         <article class="moto-card" data-category="urbana">
           <div class="visual">
             <span class="tag">Best seller</span>
-            <img src="img/motos/az125-cinza.jpg" alt="Avelloz AZ125 cinza" loading="lazy" />
+            <img src="img/motos/az125-cinza.webp" alt="Avelloz AZ125 cinza" loading="lazy" />
           </div>
           <div class="body">
             <span class="category">Urbana · 125cc EFI</span>
@@ -139,7 +210,7 @@
         <article class="moto-card" data-category="adventure">
           <div class="visual">
             <span class="tag new">Adventure</span>
-            <img src="img/motos/az160-azul.jpg" alt="Avelloz AZ160 Adventure azul" loading="lazy" />
+            <img src="img/motos/az160-azul.webp" alt="Avelloz AZ160 Adventure azul" loading="lazy" />
           </div>
           <div class="body">
             <span class="category">Trail · 160cc</span>
@@ -180,7 +251,7 @@
         <div class="gallery">
           <div class="visual">
             <span class="ribbon">Cub 49cc</span>
-            <img src="img/motos/az1-vermelha.jpg" alt="Avelloz AZ1 vermelha" data-model-img />
+            <img src="img/motos/az1-vermelha.webp" alt="Avelloz AZ1 vermelha" data-model-img />
           </div>
           <div class="gallery-thumbs" data-thumbs></div>
         </div>
@@ -191,9 +262,9 @@
           <div class="color-picker">
             <span class="color-label">Cor:</span>
             <div class="swatches">
-              <button type="button" class="swatch active" style="--c:#C0142B" data-imgs="img/motos/az1-vermelha.jpg,img/motos/az1-vermelha-lateral.jpg,img/motos/az1-vermelha-frente.jpg,img/motos/az1-vermelha-esquerda.jpg" data-cor="Vermelha" aria-label="Vermelha"></button>
-              <button type="button" class="swatch" style="--c:#1A1A1A" data-imgs="img/motos/az1-preta.jpg,img/motos/az1-preta-lateral.jpg,img/motos/az1-preta-frente.jpg,img/motos/az1-preta-esquerda.jpg" data-cor="Preta" aria-label="Preta"></button>
-              <button type="button" class="swatch" style="--c:#ECECEC" data-imgs="img/motos/az1-branca.jpg,img/motos/az1-branca-lateral.jpg,img/motos/az1-branca-frente.jpg,img/motos/az1-branca-esquerda.jpg" data-cor="Branca" aria-label="Branca"></button>
+              <button type="button" class="swatch active" style="--c:#C0142B" data-imgs="img/motos/az1-vermelha.webp,img/motos/az1-vermelha-lateral.webp,img/motos/az1-vermelha-frente.webp,img/motos/az1-vermelha-esquerda.webp" data-cor="Vermelha" aria-label="Vermelha"></button>
+              <button type="button" class="swatch" style="--c:#1A1A1A" data-imgs="img/motos/az1-preta.webp,img/motos/az1-preta-lateral.webp,img/motos/az1-preta-frente.webp,img/motos/az1-preta-esquerda.webp" data-cor="Preta" aria-label="Preta"></button>
+              <button type="button" class="swatch" style="--c:#ECECEC" data-imgs="img/motos/az1-branca.webp,img/motos/az1-branca-lateral.webp,img/motos/az1-branca-frente.webp,img/motos/az1-branca-esquerda.webp" data-cor="Branca" aria-label="Branca"></button>
             </div>
             <span class="selected-cor" data-cor-label>Vermelha</span>
           </div>
@@ -215,7 +286,7 @@
         <div class="gallery">
           <div class="visual">
             <span class="ribbon">Urbana 125cc EFI</span>
-            <img src="img/motos/az125-cinza.jpg" alt="Avelloz AZ125 cinza" data-model-img />
+            <img src="img/motos/az125-cinza.webp" alt="Avelloz AZ125 cinza" data-model-img />
           </div>
           <div class="gallery-thumbs" data-thumbs></div>
         </div>
@@ -226,9 +297,9 @@
           <div class="color-picker">
             <span class="color-label">Cor:</span>
             <div class="swatches">
-              <button type="button" class="swatch active" style="--c:#7A7E85" data-imgs="img/motos/az125-cinza.jpg,img/motos/az125-cinza-lateral.jpg,img/motos/az125-cinza-frente.jpg,img/motos/az125-cinza-esquerda.jpg" data-cor="Cinza" aria-label="Cinza"></button>
-              <button type="button" class="swatch" style="--c:#1A1A1A" data-imgs="img/motos/az125-preta.jpg,img/motos/az125-preta-lateral.jpg,img/motos/az125-preta-frente.jpg,img/motos/az125-preta-esquerda.jpg" data-cor="Preta" aria-label="Preta"></button>
-              <button type="button" class="swatch" style="--c:#ECECEC" data-imgs="img/motos/az125-branca.jpg,img/motos/az125-branca-lateral.jpg,img/motos/az125-branca-frente.jpg,img/motos/az125-branca-esquerda.jpg" data-cor="Branca" aria-label="Branca"></button>
+              <button type="button" class="swatch active" style="--c:#7A7E85" data-imgs="img/motos/az125-cinza.webp,img/motos/az125-cinza-lateral.webp,img/motos/az125-cinza-frente.webp,img/motos/az125-cinza-esquerda.webp" data-cor="Cinza" aria-label="Cinza"></button>
+              <button type="button" class="swatch" style="--c:#1A1A1A" data-imgs="img/motos/az125-preta.webp,img/motos/az125-preta-lateral.webp,img/motos/az125-preta-frente.webp,img/motos/az125-preta-esquerda.webp" data-cor="Preta" aria-label="Preta"></button>
+              <button type="button" class="swatch" style="--c:#ECECEC" data-imgs="img/motos/az125-branca.webp,img/motos/az125-branca-lateral.webp,img/motos/az125-branca-frente.webp,img/motos/az125-branca-esquerda.webp" data-cor="Branca" aria-label="Branca"></button>
             </div>
             <span class="selected-cor" data-cor-label>Cinza</span>
           </div>
@@ -250,7 +321,7 @@
         <div class="gallery">
           <div class="visual">
             <span class="ribbon">Adventure 160cc</span>
-            <img src="img/motos/az160-azul.jpg" alt="Avelloz AZ160 Adventure azul" data-model-img />
+            <img src="img/motos/az160-azul.webp" alt="Avelloz AZ160 Adventure azul" data-model-img />
           </div>
           <div class="gallery-thumbs" data-thumbs></div>
         </div>
@@ -261,9 +332,9 @@
           <div class="color-picker">
             <span class="color-label">Cor:</span>
             <div class="swatches">
-              <button type="button" class="swatch active" style="--c:#1B49C4" data-imgs="img/motos/az160-azul.jpg,img/motos/az160-azul-lateral.jpg,img/motos/az160-azul-frente.jpg,img/motos/az160-azul-esquerda.jpg" data-cor="Azul" aria-label="Azul"></button>
-              <button type="button" class="swatch" style="--c:#C0142B" data-imgs="img/motos/az160-vermelha.jpg,img/motos/az160-vermelha-lateral.jpg,img/motos/az160-vermelha-frente.jpg,img/motos/az160-vermelha-esquerda.jpg" data-cor="Vermelha" aria-label="Vermelha"></button>
-              <button type="button" class="swatch" style="--c:#1A1A1A" data-imgs="img/motos/az160-preta.jpg,img/motos/az160-preta-lateral.jpg,img/motos/az160-preta-frente.jpg,img/motos/az160-preta-esquerda.jpg" data-cor="Preta" aria-label="Preta"></button>
+              <button type="button" class="swatch active" style="--c:#1B49C4" data-imgs="img/motos/az160-azul.webp,img/motos/az160-azul-lateral.webp,img/motos/az160-azul-frente.webp,img/motos/az160-azul-esquerda.webp" data-cor="Azul" aria-label="Azul"></button>
+              <button type="button" class="swatch" style="--c:#C0142B" data-imgs="img/motos/az160-vermelha.webp,img/motos/az160-vermelha-lateral.webp,img/motos/az160-vermelha-frente.webp,img/motos/az160-vermelha-esquerda.webp" data-cor="Vermelha" aria-label="Vermelha"></button>
+              <button type="button" class="swatch" style="--c:#1A1A1A" data-imgs="img/motos/az160-preta.webp,img/motos/az160-preta-lateral.webp,img/motos/az160-preta-frente.webp,img/motos/az160-preta-esquerda.webp" data-cor="Preta" aria-label="Preta"></button>
             </div>
             <span class="selected-cor" data-cor-label>Azul</span>
           </div>
@@ -301,7 +372,7 @@
       <div class="footer-grid">
         <div>
           <a href="index.html" class="brand">
-            <div class="brand-mark"><span>A</span></div>
+            <div class="brand-mark"><img src="img/logo-mark.svg" alt="Avelloz" /></div>
             <div class="brand-name"><small>Avelloz</small>Santana Motos</div>
           </a>
           <p class="about">Concessionária Avelloz com atendimento humanizado e a melhor condição para você sair pilotando.</p>
@@ -344,7 +415,5 @@
       </div>
     </div>
   </footer>
-
-  <script src="script.js"></script>
 </body>
 </html>

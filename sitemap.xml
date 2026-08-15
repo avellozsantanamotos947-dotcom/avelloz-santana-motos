@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+  <url>
+    <loc>https://www.avellozsantanamotos.com.br/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://www.avellozsantanamotos.com.br/img/banner-az160.jpg</image:loc>
+      <image:title>Avelloz AZ160 Adventure — lifestyle</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.avellozsantanamotos.com.br/img/motos/az160-azul.jpg</image:loc>
+      <image:title>Avelloz AZ160 Adventure azul</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://www.avellozsantanamotos.com.br/motos.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://www.avellozsantanamotos.com.br/img/motos/az1-vermelha.jpg</image:loc>
+      <image:title>Avelloz AZ1 vermelha</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.avellozsantanamotos.com.br/img/motos/az125-cinza.jpg</image:loc>
+      <image:title>Avelloz AZ125 cinza</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.avellozsantanamotos.com.br/img/motos/az160-azul.jpg</image:loc>
+      <image:title>Avelloz AZ160 Adventure azul</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://www.avellozsantanamotos.com.br/motos.html#az1</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.avellozsantanamotos.com.br/motos.html#az125</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.avellozsantanamotos.com.br/motos.html#az160</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://www.avellozsantanamotos.com.br/contato.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.avellozsantanamotos.com.br/politica-de-privacidade</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://www.avellozsantanamotos.com.br/termos-de-servico</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+</urlset>
