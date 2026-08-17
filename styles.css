@@ -27,10 +27,10 @@
   --gray-800: #2A3142;
   --black: #0B0F1A;
 
-  /* Tipografia — squared & striking */
-  --font-body: 'Manrope', 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --font-heading: 'Archivo', 'Manrope', system-ui, sans-serif;
-  --font-display: 'Archivo Black', 'Archivo', 'Manrope', sans-serif;
+  /* Tipografia — refinada e premium (Space Grotesk + Inter) */
+  --font-body: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-heading: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+  --font-display: 'Space Grotesk', 'Inter', system-ui, sans-serif;
 
   /* Espaçamento */
   --container: 1240px;
@@ -75,7 +75,23 @@ h1, h2, h3, h4, h5, h6,
 .lifestyle-banner h2, .section-header h2,
 .hero-stats .stat strong {
   font-family: var(--font-display);
-  letter-spacing: -0.028em;
+  letter-spacing: -0.038em;
+}
+
+/* Space Grotesk max weight é 700 — reduzir os 900s pra 700 nos displays */
+.hero h1, .page-hero h1, .section-header h2,
+.lifestyle-banner h2, .cta-banner h3,
+.hero-stats .stat strong,
+.hero-backdrop, .marquee-row,
+.moto-card h3, .model-strip h3,
+.feature h3, .contact-info h2, .form-card h3 {
+  font-weight: 700;
+}
+
+/* Hero backdrop AZ160 — Space Grotesk 700 stroke fica mais elegante que outline chunky */
+.hero-backdrop {
+  letter-spacing: -0.08em;
+  -webkit-text-stroke-width: 1.2px;
 }
 img { display: block; max-width: 100%; height: auto; }
 a { color: inherit; text-decoration: none; }
