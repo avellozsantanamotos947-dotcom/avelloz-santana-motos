@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Avelloz Santana Motos · Links</title>
+  <meta name="description" content="Fale com a Avelloz Santana Motos pelo WhatsApp da sua cidade: Vitória da Conquista, Ilhéus, Itabuna, Jequié e Itapetinga. 5 anos de garantia." />
+  <meta name="theme-color" content="#06153A" />
+  <link rel="canonical" href="https://www.avellozsantanamotos.com.br/links" />
+  <link rel="icon" type="image/svg+xml" href="img/favicon.svg" />
+  <link rel="apple-touch-icon" href="img/favicon.svg" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Avelloz Santana Motos" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:title" content="Avelloz Santana Motos · Fale com a loja da sua cidade" />
+  <meta property="og:description" content="WhatsApp direto com o vendedor em Vitória da Conquista, Ilhéus, Itabuna, Jequié e Itapetinga." />
+  <meta property="og:url" content="https://www.avellozsantanamotos.com.br/links" />
+  <meta property="og:image" content="https://www.avellozsantanamotos.com.br/img/banner-az160.jpg" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --blue-950: #06153A;
+      --blue-900: #0A1F4D;
+      --blue-800: #102B6A;
+      --blue-500: #3B6BE0;
+      --orange-600: #E55100;
+      --orange-500: #FF6B1A;
+      --orange-400: #FF8B3D;
+      --cream: #F4E7D3;
+      --white: #FFFFFF;
+      --gray-400: #98A1B3;
+      --font-body: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --font-display: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { -webkit-text-size-adjust: 100%; background: var(--blue-950); }
+    body {
+      min-height: 100vh;
+      min-height: 100dvh;
+      font-family: var(--font-body);
+      color: var(--white);
+      -webkit-font-smoothing: antialiased;
+      background:
+        radial-gradient(700px 520px at 92% 4%, rgba(255, 107, 26, 0.30), transparent 60%),
+        radial-gradient(700px 640px at 0% 96%, rgba(59, 107, 224, 0.34), transparent 60%),
+        linear-gradient(160deg, var(--blue-950) 0%, var(--blue-800) 48%, var(--blue-900) 100%);
+      overflow-x: hidden;
+    }
+
+    /* Grade sutil, igual ao hero do site */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+      background-size: 44px 44px;
+      -webkit-mask-image: radial-gradient(ellipse at 50% 30%, black 25%, transparent 80%);
+      mask-image: radial-gradient(ellipse at 50% 30%, black 25%, transparent 80%);
+      pointer-events: none;
+    }
+
+    /* Texto gigante vazado ao fundo */
+    .backdrop {
+      position: fixed;
+      top: 14%;
+      left: 50%;
+      transform: translateX(-50%) rotate(-8deg);
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(120px, 34vw, 260px);
+      letter-spacing: -0.06em;
+      line-height: 0.85;
+      color: transparent;
+      -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.07);
+      white-space: nowrap;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .wrap {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 480px;
+      margin: 0 auto;
+      padding: calc(48px + env(safe-area-inset-top, 0px)) 20px calc(40px + env(safe-area-inset-bottom, 0px));
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* ---------- Perfil ---------- */
+    .avatar {
+      position: relative;
+      width: 96px;
+      height: 96px;
+      border-radius: 28px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.04));
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35), 0 0 0 6px rgba(255, 107, 26, 0.08);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    .avatar::after {
+      content: '';
+      position: absolute;
+      inset: -14px;
+      border-radius: 40px;
+      background: radial-gradient(circle, rgba(255, 107, 26, 0.35), transparent 70%);
+      z-index: -1;
+      filter: blur(12px);
+    }
+    .avatar img { width: 62px; height: 62px; }
+
+    .brand {
+      margin-top: 20px;
+      text-align: center;
+    }
+    .brand small {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--orange-400);
+    }
+    .brand h1 {
+      margin-top: 4px;
+      font-family: var(--font-display);
+      font-size: 30px;
+      font-weight: 700;
+      letter-spacing: -0.035em;
+      line-height: 1.1;
+    }
+    .brand p {
+      margin-top: 8px;
+      font-size: 14.5px;
+      color: rgba(255, 255, 255, 0.72);
+    }
+
+    .badge {
+      margin-top: 18px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px 8px 10px;
+      border-radius: 999px;
+      background: rgba(255, 107, 26, 0.12);
+      border: 1px solid rgba(255, 139, 61, 0.35);
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--cream);
+    }
+    .badge svg { width: 16px; height: 16px; color: var(--orange-400); flex: none; }
+
+    /* ---------- Seções ---------- */
+    .section-label {
+      width: 100%;
+      margin: 34px 0 12px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--font-display);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.55);
+    }
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(255, 255, 255, 0.18), transparent);
+    }
+
+    .links {
+      width: 100%;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .link {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 16px 14px 14px;
+      border-radius: 18px;
+      text-decoration: none;
+      color: var(--white);
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.10), rgba(255, 255, 255, 0.04));
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      overflow: hidden;
+      transition: transform .35s var(--ease), border-color .35s var(--ease), background .35s var(--ease), box-shadow .35s var(--ease);
+      opacity: 0;
+      animation: rise .7s var(--ease) forwards;
+      animation-delay: calc(var(--i, 0) * 70ms + 120ms);
+    }
+    .link::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.10) 50%, transparent 70%);
+      transform: translateX(-100%);
+      transition: transform .8s var(--ease);
+    }
+    .link:hover, .link:focus-visible {
+      transform: translateY(-2px);
+      border-color: rgba(255, 139, 61, 0.55);
+      background: linear-gradient(145deg, rgba(255, 107, 26, 0.16), rgba(255, 255, 255, 0.05));
+      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.30), 0 0 0 1px rgba(255, 107, 26, 0.15);
+      outline: none;
+    }
+    .link:hover::before { transform: translateX(100%); }
+    .link:active { transform: translateY(0) scale(0.99); }
+
+    .icon {
+      flex: none;
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: var(--orange-500);
+      box-shadow: 0 8px 20px rgba(255, 107, 26, 0.40);
+      color: var(--white);
+    }
+    .icon svg { width: 22px; height: 22px; }
+    .icon.ghost {
+      background: rgba(255, 255, 255, 0.10);
+      box-shadow: none;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .text { flex: 1; min-width: 0; }
+    .text strong {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 16.5px;
+      font-weight: 600;
+      letter-spacing: -0.015em;
+      line-height: 1.25;
+    }
+    .text span {
+      display: block;
+      margin-top: 2px;
+      font-size: 13.5px;
+      color: rgba(255, 255, 255, 0.62);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .tag {
+      flex: none;
+      padding: 4px 9px;
+      border-radius: 999px;
+      font-family: var(--font-display);
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--blue-950);
+      background: var(--cream);
+    }
+
+    .arrow {
+      flex: none;
+      width: 18px;
+      height: 18px;
+      color: rgba(255, 255, 255, 0.45);
+      transition: transform .35s var(--ease), color .35s var(--ease);
+    }
+    .link:hover .arrow { transform: translateX(3px); color: var(--orange-400); }
+
+    /* ---------- Rodapé ---------- */
+    footer {
+      margin-top: 40px;
+      text-align: center;
+      font-size: 12.5px;
+      color: rgba(255, 255, 255, 0.45);
+      line-height: 1.6;
+    }
+    footer a { color: rgba(255, 255, 255, 0.7); text-decoration: none; }
+    footer a:hover { color: var(--orange-400); }
+
+    .rise { opacity: 0; animation: rise .8s var(--ease) forwards; }
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(14px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .link, .rise { animation: none; opacity: 1; }
+      .link, .link::before, .arrow { transition: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="backdrop" aria-hidden="true">AVELLOZ</div>
+
+  <main class="wrap">
+    <header class="rise" style="display:flex;flex-direction:column;align-items:center;">
+      <div class="avatar"><img src="img/logo-mark.svg" alt="Avelloz" /></div>
+      <div class="brand">
+        <small>Avelloz</small>
+        <h1>Santana Motos</h1>
+        <p>Concessionária oficial · Sul e Sudoeste da Bahia</p>
+      </div>
+      <div class="badge">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+        5 anos de garantia
+      </div>
+    </header>
+
+    <div class="section-label">Fale com a loja da sua cidade</div>
+    <ul class="links" id="cidades"></ul>
+
+    <div class="section-label">Conheça mais</div>
+    <ul class="links">
+      <li>
+        <a class="link" style="--i:5" href="motos">
+          <span class="icon ghost">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="5.5" cy="17" r="3.5"/><circle cx="18.5" cy="17" r="3.5"/><path d="M15 6h3l2 5M5.5 17 9 9h6l3.5 8M9 9 7.5 6H5"/></svg>
+          </span>
+          <span class="text"><strong>Ver modelos</strong><span>AZ1 · AZ125 EFI · AZ160 Adventure</span></span>
+          <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </li>
+      <li>
+        <a class="link" style="--i:6" href="contato">
+          <span class="icon ghost">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M2 10h20M6 15h4"/></svg>
+          </span>
+          <span class="text"><strong>Simular financiamento</strong><span>Análise rápida direto no WhatsApp</span></span>
+          <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </li>
+      <li>
+        <a class="link" style="--i:7" href="https://www.instagram.com/avellozsm.vca" target="_blank" rel="noopener">
+          <span class="icon ghost">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.2c3.2 0 3.6 0 4.8.1 1.2 0 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.3 1 .4 2.2.1 1.2.1 1.6.1 4.8s0 3.6-.1 4.8c0 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .3-2.2.4-1.2.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-1.2 0-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.3-1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.8c0-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.3 2.2-.4C8.4 2.2 8.8 2.2 12 2.2zm0 5.4a4.4 4.4 0 1 0 0 8.8 4.4 4.4 0 0 0 0-8.8zm5.1-1.6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/></svg>
+          </span>
+          <span class="text"><strong>Instagram</strong><span>@avellozsm.vca</span></span>
+          <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </li>
+      <li>
+        <a class="link" style="--i:8" href="./">
+          <span class="icon ghost">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg>
+          </span>
+          <span class="text"><strong>Site oficial</strong><span>avellozsantanamotos.com.br</span></span>
+          <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </li>
+    </ul>
+
+    <footer>
+      Seg–Sex 08–18 · Sáb 08–13<br />
+      © <span id="ano">2026</span> Avelloz Santana Motos · <a href="politica-de-privacidade">Privacidade</a>
+    </footer>
+  </main>
+
+  <script>
+    // Um WhatsApp por cidade — edite aqui para incluir ou trocar números.
+    const CIDADES = [
+      { nome: 'Vitória da Conquista', tel: '77981034163', tag: 'Matriz' },
+      { nome: 'Ilhéus',               tel: '73998036678' },
+      { nome: 'Itabuna',              tel: '73981081989' },
+      { nome: 'Jequié',               tel: '73982138376' },
+      { nome: 'Itapetinga',           tel: '77988284748' },
+    ];
+
+    const formatar = (t) => `(${t.slice(0, 2)}) ${t.slice(2, 7)}-${t.slice(7)}`;
+    const waIcon = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 3.5A10.5 10.5 0 0 0 3.6 17.2L2 22l4.9-1.6A10.4 10.4 0 0 0 12 22a10.5 10.5 0 0 0 8.5-18.5zM12 20a8.7 8.7 0 0 1-4.4-1.2l-.3-.2-3 1 1-2.9-.2-.3a8.7 8.7 0 1 1 6.9 3.6zm4.8-6.5c-.3-.1-1.6-.8-1.8-.9-.2-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.2.2-.3.2-.6.1-.3-.1-1.1-.4-2.1-1.3-.8-.7-1.3-1.5-1.5-1.8-.2-.3 0-.4.1-.6l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1.1 2.7c.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.6-.6 1.8-1.3.2-.6.2-1.2.2-1.3-.1-.1-.3-.2-.5-.3z"/></svg>';
+    const arrow = '<svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>';
+
+    document.getElementById('cidades').innerHTML = CIDADES.map((c, i) => {
+      const msg = encodeURIComponent(`Olá! Vim pelo link da bio e quero falar com a Avelloz de ${c.nome}.`);
+      return `<li>
+        <a class="link" style="--i:${i}" href="https://wa.me/55${c.tel}?text=${msg}" target="_blank" rel="noopener"
+           aria-label="WhatsApp Avelloz ${c.nome}, ${formatar(c.tel)}">
+          <span class="icon">${waIcon}</span>
+          <span class="text"><strong>${c.nome}</strong><span>${formatar(c.tel)}</span></span>
+          ${c.tag ? `<span class="tag">${c.tag}</span>` : ''}
+          ${arrow}
+        </a>
+      </li>`;
+    }).join('');
+
+    document.getElementById('ano').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
