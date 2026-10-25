@@ -1138,8 +1138,8 @@ body.loaded .hero-visual .showcase:hover .moto-img {
 /* =========== Moto Cards =========== */
 .moto-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 28px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
 }
 .moto-card {
   background: var(--white);
@@ -2015,4 +2015,227 @@ body.loaded .hero-visual .showcase:hover .moto-img {
   .lifestyle-banner::after {
     background: linear-gradient(180deg, rgba(10, 31, 77, 0.70) 0%, rgba(10, 31, 77, 0.55) 50%, rgba(10, 31, 77, 0.80) 100%);
   }
+}
+
+/* ============================================================
+   LANÇAMENTO — AZ170 Bravo (mesma atmosfera do hero)
+   ============================================================ */
+
+.launch {
+  position: relative;
+  padding: 110px 0;
+  color: var(--white);
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    radial-gradient(900px 600px at 78% 40%, rgba(255, 107, 26, 0.26), transparent 60%),
+    radial-gradient(800px 700px at 0% 100%, rgba(59, 107, 224, 0.30), transparent 60%),
+    linear-gradient(135deg, #06153A 0%, #102B6A 50%, #0A1F4D 100%);
+}
+.launch::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+  background-size: 48px 48px;
+  -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 85%);
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 85%);
+  pointer-events: none;
+  z-index: -1;
+}
+.launch-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+  gap: 64px;
+  align-items: center;
+}
+
+.launch-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 16px 8px 12px;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 107, 26, 0.14);
+  border: 1px solid rgba(255, 139, 61, 0.40);
+  font-family: var(--font-heading);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #F4E7D3;
+}
+.launch-eyebrow i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--orange-500);
+  box-shadow: 0 0 0 0 rgba(255, 107, 26, 0.7);
+  animation: launch-pulse 1.8s ease-out infinite;
+}
+@keyframes launch-pulse {
+  to { box-shadow: 0 0 0 10px rgba(255, 107, 26, 0); }
+}
+
+.launch h2 {
+  margin-top: 20px;
+  font-family: var(--font-display);
+  font-size: clamp(40px, 5.4vw, 68px);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+.launch h2 .accent {
+  background: linear-gradient(120deg, var(--orange-400), var(--orange-500));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.launch-lead {
+  margin-top: 18px;
+  max-width: 520px;
+  font-size: 17px;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.launch-specs {
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(8px);
+  overflow: hidden;
+}
+.launch-specs div {
+  padding: 16px 14px;
+  border-left: 1px solid rgba(255, 255, 255, 0.10);
+}
+.launch-specs div:first-child { border-left: 0; }
+.launch-specs strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+.launch-specs strong small { font-size: 14px; color: var(--orange-400); margin-left: 2px; }
+.launch-specs span {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.launch-features {
+  list-style: none;
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.launch-features li {
+  padding: 7px 12px;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.launch-colors {
+  margin: 22px 0 30px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+}
+.launch-colors i {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--c);
+  border: 2px solid rgba(255, 255, 255, 0.85);
+}
+.launch-colors span { margin-left: 6px; }
+
+.launch-visual { position: relative; }
+.launch-backdrop {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-display);
+  font-size: clamp(140px, 19vw, 260px);
+  font-weight: 700;
+  letter-spacing: -0.08em;
+  line-height: 0.9;
+  color: transparent;
+  -webkit-text-stroke: 1.2px rgba(255, 255, 255, 0.09);
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+}
+.launch-photo {
+  position: relative;
+  z-index: 1;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: #E9E9EB;
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.10), 0 0 120px rgba(255, 107, 26, 0.25);
+  transform: rotate(-1.5deg);
+  transition: transform 0.6s var(--ease);
+}
+.launch-photo:hover { transform: rotate(0deg) scale(1.01); }
+.launch-photo img { width: 100%; height: auto; }
+.launch-badge {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 2;
+  padding: 7px 14px;
+  border-radius: var(--radius-pill);
+  background: var(--orange-500);
+  color: var(--white);
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  box-shadow: 0 8px 20px rgba(255, 107, 26, 0.45);
+}
+.floating-chip.launch-chip { right: -10px; bottom: -18px; }
+
+/* Card AZ170 nas grades: foto de estúdio em paisagem */
+.visual-studio img {
+  mix-blend-mode: multiply;
+  filter: brightness(1.14) contrast(1.08);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 5%, #000 95%, transparent 100%), linear-gradient(180deg, transparent 0, #000 6%, #000 94%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(90deg, transparent 0, #000 5%, #000 95%, transparent 100%), linear-gradient(180deg, transparent 0, #000 6%, #000 94%, transparent 100%);
+  mask-composite: intersect;
+}
+.model-strip .visual.visual-studio { aspect-ratio: 4 / 3; }
+
+@media (max-width: 960px) {
+  .launch { padding: 80px 0; }
+  .launch-grid { grid-template-columns: 1fr; gap: 48px; }
+  .launch-visual { order: -1; }
+  .floating-chip.launch-chip { right: 8px; }
+}
+@media (max-width: 520px) {
+  .launch-specs { grid-template-columns: repeat(2, 1fr); }
+  .launch-specs div:nth-child(3) { border-left: 0; }
+  .launch-specs div:nth-child(n+3) { border-top: 1px solid rgba(255, 255, 255, 0.10); }
+  .launch .hero-actions .btn { width: 100%; justify-content: center; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .launch-eyebrow i { animation: none; }
+  .launch-photo { transition: none; }
 }
