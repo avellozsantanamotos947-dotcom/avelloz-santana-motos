@@ -240,6 +240,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function handleSuccess(lead, customWppMsg = null, isFallback = false) {
     if (typeof fbq === 'function') {
+      // Advanced Matching: telefone no formato E.164 sem "+" (55 + DDD + número).
+      // O próprio pixel aplica SHA-256 antes de enviar — o Meta nunca recebe o número em texto puro.
+      const digits = (lead.telefone || '').replace(/\D/g, '');
+      const ph = digits.length >= 10 ? (digits.startsWith('55') && digits.length >= 12 ? digits : '55' + digits) : '';
+      if (ph) fbq('init', '1850502926298813', { ph });
       fbq('track', lead.tipo === 'simulacao' ? 'Lead' : 'Contact', { content_name: lead.modelo || 'Contato' });
     }
 
