@@ -424,7 +424,7 @@
       const msg = encodeURIComponent(`Olá! Vim pelo link da bio e quero falar com a Avelloz de ${c.nome}.`);
       return `<li>
         <a class="link" style="--i:${i}" href="https://wa.me/55${c.tel}?text=${msg}" target="_blank" rel="noopener"
-           aria-label="WhatsApp Avelloz ${c.nome}, ${formatar(c.tel)}">
+           data-cidade="${c.nome}" aria-label="WhatsApp Avelloz ${c.nome}, ${formatar(c.tel)}">
           <span class="icon">${waIcon}</span>
           <span class="text"><strong>${c.nome}</strong><span>${formatar(c.tel)}</span></span>
           ${c.tag ? `<span class="tag">${c.tag}</span>` : ''}
@@ -434,6 +434,13 @@
     }).join('');
 
     document.getElementById('ano').textContent = new Date().getFullYear();
+
+    // Meta Pixel: clique no WhatsApp de uma cidade conta como Lead
+    document.getElementById('cidades').addEventListener('click', (e) => {
+      const a = e.target.closest('a[data-cidade]');
+      if (!a || typeof fbq !== 'function') return;
+      fbq('track', 'Lead', { content_name: 'WhatsApp ' + a.dataset.cidade, content_category: 'Links' });
+    });
   </script>
 </body>
 </html>

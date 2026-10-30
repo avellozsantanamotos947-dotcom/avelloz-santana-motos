@@ -239,6 +239,10 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function handleSuccess(lead, customWppMsg = null, isFallback = false) {
+    if (typeof fbq === 'function') {
+      fbq('track', 'Lead', { content_name: lead.modelo || 'Contato', content_category: lead.tipo === 'simulacao' ? 'Simulação' : 'Formulário' });
+    }
+
     let whatsappUrl = '';
     const wppNumber = CRM_CONFIG.whatsappNumber;
 

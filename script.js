@@ -305,3 +305,11 @@ document.querySelectorAll('[data-year]').forEach((el) => {
     }
   });
 })();
+
+// Meta Pixel: clique em qualquer link de WhatsApp conta como Lead
+// (o botão de WhatsApp da tela de sucesso do formulário fica de fora — o Lead já foi contado no envio)
+document.addEventListener('click', (e) => {
+  const a = e.target.closest('a[href*="wa.me"]');
+  if (!a || a.closest('#form-success') || typeof fbq !== 'function') return;
+  fbq('track', 'Lead', { content_name: 'WhatsApp', content_category: location.pathname });
+});
