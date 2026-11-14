@@ -564,6 +564,7 @@
 
             <form id="lead-form" autocomplete="on" novalidate>
               <input type="hidden" name="form_type" value="simulation" />
+              <input type="text" name="company_website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true" /><!-- anti-spam (nortee), não remova -->
 
               <div class="form-row">
                 <div class="field full">
@@ -580,6 +581,24 @@
                 <div class="field">
                   <label for="telefone">WhatsApp / Celular <span class="req">*</span></label>
                   <input type="tel" id="telefone" name="telefone" placeholder="(77) 99999-9999" inputmode="tel" required />
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="field">
+                  <label for="email_sim">E-mail <span class="req">*</span></label>
+                  <input type="email" id="email_sim" name="email_sim" placeholder="seu@email.com" inputmode="email" required />
+                </div>
+                <div class="field">
+                  <label for="cidade">Cidade / loja mais próxima <span class="req">*</span></label>
+                  <select id="cidade" name="cidade" required>
+                    <option value="">Selecione sua cidade</option>
+                    <option value="Vitória da Conquista">Vitória da Conquista</option>
+                    <option value="Ilhéus">Ilhéus</option>
+                    <option value="Itabuna">Itabuna</option>
+                    <option value="Jequié">Jequié</option>
+                    <option value="Itapetinga">Itapetinga</option>
+                  </select>
                 </div>
               </div>
 

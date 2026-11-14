@@ -1,6 +1,13 @@
 /**
  * Integração CRM nortee & Análise de Crédito
  * Avelloz Santana Motos
+ *
+ * Os formulários do site (home e contato) enviam para o formulário nortee
+ * "nrt_form_d38a00d09cfd43a0993239ca438f092c". Campos que o nortee espera:
+ *   n = nome · t = telefone · e = e-mail · c = cidade (roteamento por loja)
+ *   campo_5 = campo livre (usamos para CPF, modelo, renda e mensagem)
+ *   company_website = honeypot anti-spam (fica vazio; se um robô preencher, o nortee descarta)
+ * Enviando como JSON o nortee responde 204 (sucesso) ou 400 {"error":"invalid_input"}.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -17,8 +24,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Configurações da API do CRM nortee
   const CRM_CONFIG = {
-    apiEndpoint: 'https://api.nortee.com.br/v1/leads/webhook', 
-    whatsappNumber: '5577981034163', // Telefone da concessionária
+    apiEndpoint: 'https://api.nortee.com.br/v1/forms/nrt_form_d38a00d09cfd43a0993239ca438f092c/submit',
+    whatsappNumber: '5577981034163', // Telefone da concessionária (matriz) — usado quando não há cidade
+  };
+
+  // WhatsApp de cada loja — o botão da tela de sucesso leva para a cidade escolhida.
+  // Mesmos números da árvore de links (links.html).
+  const WHATSAPP_POR_CIDADE = {
+    'Vitória da Conquista': '5577981034163',
+    'Ilhéus': '5573998036678',
+    'Itabuna': '5573981081989',
+    'Jequié': '5573982138376',
+    'Itapetinga': '5577988284748',
   };
 
   // --- 1. CONTROLE DE ABAS (Tabs) ---
@@ -38,8 +55,8 @@ document.addEventListener('DOMContentLoaded', () => {
         // Atualizar tipo de formulário e botão
         if (formTypeInput) formTypeInput.value = tabId;
         if (submitBtnText) {
-          submitBtnText.textContent = tabId === 'simulation' 
-            ? 'Consultar Crédito & Simular' 
+          submitBtnText.textContent = tabId === 'simulation'
+            ? 'Consultar Crédito & Simular'
             : 'Enviar Mensagem';
         }
 
@@ -64,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
     input.addEventListener('input', (e) => {
       let value = e.target.value.replace(/\D/g, '');
       if (value.length > 11) value = value.slice(0, 11);
-      
+
       let formatted = '';
       if (value.length > 0) formatted += value.slice(0, 3);
       if (value.length > 3) formatted += '.' + value.slice(3, 6);
@@ -85,21 +102,24 @@ document.addEventListener('DOMContentLoaded', () => {
   function validarCPF(cpf) {
     cpf = cpf.replace(/[^\d]+/g, '');
     if (cpf === '' || cpf.length !== 11 || /^(\d)\1{10}$/.test(cpf)) return false;
-    
+
     let add = 0;
     for (let i = 0; i < 9; i++) add += parseInt(cpf.charAt(i)) * (10 - i);
     let rev = 11 - (add % 11);
     if (rev === 10 || rev === 11) rev = 0;
     if (rev !== parseInt(cpf.charAt(9))) return false;
-    
+
     add = 0;
     for (let i = 0; i < 10; i++) add += parseInt(cpf.charAt(i)) * (11 - i);
     let rev2 = 11 - (add % 11);
     if (rev2 === 10 || rev2 === 11) rev2 = 0;
     if (rev2 !== parseInt(cpf.charAt(10))) return false;
-    
+
     return true;
   }
+
+  const validarEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test((email || '').trim());
+  const formatarCPF = (digits) => digits.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
 
   // --- 4. SUBMISSÃO E VALIDAÇÃO CONDICIONAL ---
   form.addEventListener('submit', async (e) => {
@@ -121,6 +141,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const nomeInput = form.querySelector('#nome');
       const cpfInput = form.querySelector('#cpf');
       const telInput = form.querySelector('#telefone');
+      const emailSimInput = form.querySelector('#email_sim');
+      const cidadeInput = form.querySelector('#cidade');
       const rawCPF = data.cpf ? data.cpf.replace(/\D/g, '') : '';
       const rawTel = data.telefone ? data.telefone.replace(/\D/g, '') : '';
 
@@ -136,12 +158,22 @@ document.addEventListener('DOMContentLoaded', () => {
         showError(telInput, 'Por favor, insira um WhatsApp válido.');
         hasErrors = true;
       }
+      if (emailSimInput && !validarEmail(data.email_sim)) {
+        showError(emailSimInput, 'Por favor, insira um e-mail válido.');
+        hasErrors = true;
+      }
+      if (cidadeInput && !(data.cidade || '').trim()) {
+        showError(cidadeInput, 'Selecione a cidade da loja mais próxima.');
+        hasErrors = true;
+      }
 
       if (!hasErrors) {
         leadPayload = {
-          nome: data.nome,
+          nome: data.nome.trim(),
           cpf: rawCPF,
           telefone: rawTel,
+          email: data.email_sim.trim(),
+          cidade: data.cidade,
           modelo: data.modelo,
           renda: data.renda,
           tipo: 'simulacao',
@@ -155,6 +187,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const nomeContatoInput = form.querySelector('#nome_contato');
       const telContatoInput = form.querySelector('#telefone_contato');
       const emailInput = form.querySelector('#email');
+      const cidadeContatoInput = form.querySelector('#cidade_contato');
       const rawTelContato = data.telefone_contato ? data.telefone_contato.replace(/\D/g, '') : '';
 
       if (nomeContatoInput && !data.nome_contato.trim()) {
@@ -165,17 +198,22 @@ document.addEventListener('DOMContentLoaded', () => {
         showError(telContatoInput, 'Por favor, insira um telefone válido.');
         hasErrors = true;
       }
-      if (emailInput && !data.email.trim()) {
-        showError(emailInput, 'O e-mail é obrigatório.');
+      if (emailInput && !validarEmail(data.email)) {
+        showError(emailInput, 'Por favor, insira um e-mail válido.');
+        hasErrors = true;
+      }
+      if (cidadeContatoInput && !(data.cidade_contato || '').trim()) {
+        showError(cidadeContatoInput, 'Selecione a cidade da loja mais próxima.');
         hasErrors = true;
       }
 
       if (!hasErrors) {
         leadPayload = {
-          nome: data.nome_contato,
+          nome: data.nome_contato.trim(),
           telefone: rawTelContato,
-          email: data.email,
-          mensagem: data.mensagem,
+          email: data.email.trim(),
+          cidade: data.cidade_contato,
+          mensagem: (data.mensagem || '').trim(),
           tipo: 'duvida',
           origem: 'Contato Geral - Avelloz Santana Motos',
           data_cadastro: new Date().toISOString()
@@ -189,6 +227,8 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
+    const norteePayload = montarPayloadNortee(leadPayload, data.company_website || '');
+
     // Carregamento (Loading State)
     const originalBtnHTML = submitBtn.innerHTML;
     submitBtn.disabled = true;
@@ -200,24 +240,13 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
 
     try {
-      const response = await fetch(CRM_CONFIG.apiEndpoint, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify(leadPayload)
-      });
-
-      if (!response.ok) throw new Error('Falha no envio para o CRM');
-
-      const resData = await response.json();
-      handleSuccess(leadPayload, resData.mensagem_whatsapp || null);
+      await enviarParaNortee(norteePayload);
+      handleSuccess(leadPayload);
 
     } catch (error) {
       console.error('Erro de envio:', error);
-      salvarLeadOffline(leadPayload);
-      handleSuccess(leadPayload, null, true);
+      salvarLeadOffline(norteePayload);
+      handleSuccess(leadPayload, true);
     } finally {
       submitBtn.disabled = false;
       submitBtn.innerHTML = originalBtnHTML;
@@ -225,6 +254,44 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // --- 5. COMPONENTES AUXILIARES ---
+
+  // Converte o lead do site para os campos do formulário nortee.
+  // Tudo que não tem campo próprio no nortee (CPF, modelo, renda, mensagem) vai junto no campo_5.
+  function montarPayloadNortee(lead, honeypot) {
+    const detalhes = [];
+    if (lead.tipo === 'simulacao') {
+      detalhes.push('Simulação de financiamento');
+      detalhes.push('Modelo: ' + (lead.modelo || 'Ainda não decidiu'));
+      if (lead.renda) detalhes.push('Renda: ' + lead.renda);
+      detalhes.push('CPF: ' + formatarCPF(lead.cpf));
+    } else {
+      detalhes.push('Dúvida / Contato');
+      if (lead.mensagem) detalhes.push('Mensagem: ' + lead.mensagem);
+    }
+    detalhes.push('Origem: site (' + (location.pathname.replace(/^\//, '') || 'início') + ')');
+
+    return {
+      n: lead.nome,
+      t: lead.telefone,
+      e: lead.email,
+      c: lead.cidade,
+      campo_5: detalhes.join(' | '),
+      company_website: honeypot,
+    };
+  }
+
+  async function enviarParaNortee(payload) {
+    const response = await fetch(CRM_CONFIG.apiEndpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify(payload)
+    });
+    if (!response.ok) throw new Error('nortee respondeu ' + response.status);
+    return response;
+  }
 
   function showError(inputElement, message) {
     inputElement.classList.add('invalid-field');
@@ -238,36 +305,36 @@ document.addEventListener('DOMContentLoaded', () => {
     inputElement.parentNode.appendChild(errorSpan);
   }
 
-  function handleSuccess(lead, customWppMsg = null, isFallback = false) {
+  function handleSuccess(lead, isFallback = false) {
     if (typeof fbq === 'function') {
       // Advanced Matching: telefone no formato E.164 sem "+" (55 + DDD + número).
       // O próprio pixel aplica SHA-256 antes de enviar — o Meta nunca recebe o número em texto puro.
       const digits = (lead.telefone || '').replace(/\D/g, '');
       const ph = digits.length >= 10 ? (digits.startsWith('55') && digits.length >= 12 ? digits : '55' + digits) : '';
       if (ph) fbq('init', '1850502926298813', { ph });
-      fbq('track', lead.tipo === 'simulacao' ? 'Lead' : 'Contact', { content_name: lead.modelo || 'Contato' });
+      fbq('track', lead.tipo === 'simulacao' ? 'Lead' : 'Contact', { content_name: lead.modelo || 'Contato', content_category: lead.cidade || '' });
     }
 
     let whatsappUrl = '';
-    const wppNumber = CRM_CONFIG.whatsappNumber;
+    const wppNumber = WHATSAPP_POR_CIDADE[lead.cidade] || CRM_CONFIG.whatsappNumber;
 
     if (lead.tipo === 'simulacao') {
-      const wppText = customWppMsg || `Olá! Acabei de enviar minha simulação de financiamento para a moto Avelloz ${lead.modelo || ''}.\nNome: ${lead.nome}\nCPF: ${lead.cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.***.***-$4')}\nWhatsApp: ${lead.telefone}`;
+      const wppText = `Olá! Acabei de enviar minha simulação de financiamento para a moto Avelloz ${lead.modelo || ''}.\nNome: ${lead.nome}\nCidade: ${lead.cidade}\nCPF: ${lead.cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.***.***-$4')}\nWhatsApp: ${lead.telefone}`;
       whatsappUrl = `https://wa.me/${wppNumber}?text=${encodeURIComponent(wppText)}`;
     } else {
-      const wppText = `Olá! Enviei uma dúvida pelo site.\nNome: ${lead.nome}\nContato: ${lead.telefone}\nAssunto: ${lead.mensagem || 'Contato Geral'}`;
+      const wppText = `Olá! Enviei uma dúvida pelo site.\nNome: ${lead.nome}\nCidade: ${lead.cidade}\nContato: ${lead.telefone}\nAssunto: ${lead.mensagem || 'Contato Geral'}`;
       whatsappUrl = `https://wa.me/${wppNumber}?text=${encodeURIComponent(wppText)}`;
     }
 
     if (successDiv) {
       successDiv.classList.add('show');
       successDiv.style.display = 'block';
-      
+
       let htmlContent = `
         <div class="success-card" style="text-align: center; padding: 24px; border-radius: 12px; background: rgba(16, 185, 129, 0.08); border: 1.5px solid #10b981;">
           <h4 style="color: #065f46; margin-bottom: 8px; font-size: 18px; font-weight: 800;">✓ Proposta Enviada com Sucesso!</h4>
           <p style="color: #065f46; font-size: 0.95rem; margin-bottom: 20px; line-height: 1.5;">
-            Olá, <strong>${lead.nome}</strong>. Seus dados foram salvos no nosso sistema. 
+            Olá, <strong>${lead.nome}</strong>. Seus dados foram enviados para a loja de <strong>${lead.cidade}</strong>.
             ${lead.tipo === 'simulacao' ? 'Nossos analistas vão simular o seu crédito junto aos bancos.' : 'Em breve um consultor responderá sua dúvida.'}
           </p>
       `;
@@ -295,10 +362,11 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // --- 6. REDUNDÂNCIA OFFLINE (Local Storage) ---
-  function salvarLeadOffline(lead) {
+  // Guarda o payload já no formato do nortee; a sincronização reenvia igual ao envio normal.
+  function salvarLeadOffline(payload) {
     try {
       let leads = JSON.parse(localStorage.getItem('nortee_pending_leads') || '[]');
-      leads.push(lead);
+      leads.push(payload);
       localStorage.setItem('nortee_pending_leads', JSON.stringify(leads));
       console.log('Lead salvo localmente para sincronização futura.');
       window.addEventListener('online', sincronizarLeadsPendentes);
@@ -314,15 +382,20 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!leads.length) return;
 
       console.log(`Sincronizando ${leads.length} leads pendentes com o CRM nortee...`);
+      const restantes = [];
       for (let i = 0; i < leads.length; i++) {
-        await fetch(CRM_CONFIG.apiEndpoint, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(leads[i])
-        });
+        // Entradas antigas (formato do webhook anterior, sem "n") são descartadas.
+        if (!leads[i] || !leads[i].n) continue;
+        try {
+          await enviarParaNortee(leads[i]);
+        } catch (err) {
+          // 4xx = o nortee recusou o dado, reenviar não resolve; erro de rede fica para a próxima.
+          if (!/respondeu 4\d\d/.test(String(err && err.message))) restantes.push(leads[i]);
+        }
       }
-      localStorage.removeItem('nortee_pending_leads');
-      console.log('Sincronização concluída com sucesso.');
+      if (restantes.length) localStorage.setItem('nortee_pending_leads', JSON.stringify(restantes));
+      else localStorage.removeItem('nortee_pending_leads');
+      console.log('Sincronização concluída.');
     } catch (e) {
       console.error('Erro na sincronização automática:', e);
     }
