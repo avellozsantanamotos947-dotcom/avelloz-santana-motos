@@ -240,7 +240,15 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
 
     try {
-      await enviarParaNortee(norteePayload);
+      try {
+        await enviarParaNortee(norteePayload);
+      } catch (err) {
+        // O formulário nortee pode não ter o campo extra (campo_5). Se ele recusar (4xx),
+        // reenvia só com os campos oficiais (n, t, e, c) para o lead não se perder.
+        if (!/respondeu 4\d\d/.test(String(err && err.message))) throw err;
+        console.warn('nortee recusou os detalhes extras; reenviando só com os campos oficiais.');
+        await enviarParaNortee(apenasCamposOficiais(norteePayload));
+      }
       handleSuccess(leadPayload);
 
     } catch (error) {
@@ -278,6 +286,11 @@ document.addEventListener('DOMContentLoaded', () => {
       campo_5: detalhes.join(' | '),
       company_website: honeypot,
     };
+  }
+
+  // Só os campos que o formulário nortee em produção possui hoje.
+  function apenasCamposOficiais(payload) {
+    return { n: payload.n, t: payload.t, e: payload.e, c: payload.c, company_website: payload.company_website };
   }
 
   async function enviarParaNortee(payload) {
